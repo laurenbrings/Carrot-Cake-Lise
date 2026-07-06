@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Carrot Cake de Lise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --rose:#FDE8E8;
+  --rose-mid:#F9C8C8;
+  --rose-dark:#E8A0A0;
+  --jaune:#FDF6E3;
+  --jaune-mid:#F5E6B0;
+  --vert:#D4EDE8;
+  --vert-mid:#A8D5CC;
+  --vert-dark:#5BA89A;
+  --text:#3D2B1F;
+  --text-light:#7A5C4E;
+  --white:#FFFDF9;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,253,249,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rose-mid);padding:0 2rem}
+.nav-inner{max-width:900px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:.85rem;color:var(--text-light);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--vert-dark)}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--rose) 0%,var(--jaune) 50%,var(--vert) 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem}
+.hero-inner{max-width:640px}
+.hero-tag{display:inline-block;background:var(--vert-mid);color:var(--vert-dark);font-size:.75rem;font-weight:500;letter-spacing:.08em;padding:4px 14px;border-radius:20px;margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,4.5rem);line-height:1.1;color:var(--text);margin-bottom:1rem}
+.hero h1 em{font-style:italic;color:var(--vert-dark)}
+.hero-sub{font-size:1.05rem;color:var(--text-light);line-height:1.7;margin-bottom:2rem}
+.hero-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.meta-pill{background:white;border-radius:30px;padding:8px 18px;font-size:.82rem;color:var(--text-light);border:1px solid var(--rose-mid);display:flex;align-items:center;gap:6px}
+.meta-pill span{font-weight:500;color:var(--text)}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:900px;margin:0 auto}
+.section-label{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);color:var(--text);margin-bottom:2.5rem;line-height:1.2}
+
+/* INGREDIENTS */
+#ingredients{background:var(--jaune)}
+.ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:600px){.ing-grid{grid-template-columns:1fr}}
+.ing-card{background:white;border-radius:20px;padding:1.75rem;border:1px solid var(--jaune-mid)}
+.ing-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--jaune-mid)}
+.ing-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.ing-list li{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;color:var(--text-light);padding-bottom:.5rem;border-bottom:1px dashed #EEE}
+.ing-list li:last-child{border-bottom:none}
+.ing-list .name{color:var(--text);font-weight:400}
+.ing-list .qty{font-weight:500;color:var(--vert-dark);font-size:.85rem}
+.ing-note{margin-top:1rem;background:var(--rose);border-radius:12px;padding:.85rem 1rem;font-size:.8rem;color:var(--text-light);line-height:1.6;border-left:3px solid var(--rose-dark)}
+
+/* STEPS */
+#preparation{background:var(--white)}
+.steps{display:flex;flex-direction:column;gap:1.5rem}
+.step{display:grid;grid-template-columns:48px 1fr;gap:1.25rem;align-items:start}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--vert);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--vert-dark);flex-shrink:0}
+.step-content{background:var(--white);border:1px solid #EEE;border-radius:16px;padding:1.25rem 1.5rem}
+.step-content p{font-size:.92rem;line-height:1.75;color:var(--text-light)}
+.step-content strong{color:var(--text)}
+.step-tip{margin-top:.75rem;background:var(--vert);border-radius:10px;padding:.6rem .9rem;font-size:.78rem;color:var(--vert-dark);line-height:1.6}
+
+/* GLAÇAGE */
+#glacage{background:var(--rose)}
+.glacage-inner{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:600px){.glacage-inner{grid-template-columns:1fr}}
+.glacage-card{background:white;border-radius:20px;padding:1.75rem;border:1px solid var(--rose-mid)}
+.glacage-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:1.25rem}
+.glacage-steps{display:flex;flex-direction:column;gap:.9rem}
+.g-step{display:flex;gap:.75rem;align-items:flex-start;font-size:.88rem;color:var(--text-light);line-height:1.6}
+.g-dot{width:8px;height:8px;border-radius:50%;background:var(--rose-dark);flex-shrink:0;margin-top:.45rem}
+.secret-card{background:var(--text);border-radius:20px;padding:1.75rem;color:white}
+.secret-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--jaune-mid);margin-bottom:1.25rem}
+.secret-card p{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.75)}
+.secret-card strong{color:white}
+
+/* TIPS */
+#conseils{background:var(--vert)}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem}
+.tip{background:white;border-radius:16px;padding:1.5rem;border:1px solid var(--vert-mid)}
+.tip-icon{font-size:1.5rem;margin-bottom:.75rem}
+.tip h4{font-weight:500;font-size:.92rem;color:var(--text);margin-bottom:.4rem}
+.tip p{font-size:.82rem;color:var(--text-light);line-height:1.6}
+
+/* FOOTER */
+footer{background:var(--text);color:rgba(255,255,255,.6);text-align:center;padding:2.5rem 2rem;font-size:.82rem}
+footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">🥕 Le Carrot Cake de Lise</span>
+    <div class="nav-links">
+      <a href="#ingredients">Ingrédients</a>
+      <a href="#preparation">Préparation</a>
+      <a href="#glacage">Glaçage</a>
+      <a href="#conseils">Conseils</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">La recette de Lise</span>
+    <h1>Le meilleur<br><em>Carrot Cake</em></h1>
+    <p class="hero-sub">Moelleux, parfumé, généreux. Une recette testée et annotée,<br>avec tous les petits secrets pour le réussir à la perfection.</p>
+    <div class="hero-meta">
+      <div class="meta-pill">🔪 Préparation <span>30 min</span></div>
+      <div class="meta-pill">🔥 Cuisson <span>20–30 min</span></div>
+      <div class="meta-pill">❄️ Repos <span>12h</span></div>
+      <div class="meta-pill">👥 Pour <span>6–8 personnes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INGRÉDIENTS -->
+<section id="ingredients">
+  <div class="container">
+    <div class="section-label" style="color:var(--vert-dark)">Étape 1</div>
+    <h2 class="section-title">Les ingrédients</h2>
+    <div class="ing-grid">
+      <div class="ing-card">
+        <h3>🎂 Le gâteau</h3>
+        <ul class="ing-list">
+          <li><span class="name">Carotte râpée</span><span class="qty">250 g</span></li>
+          <li><span class="name">Poudre d'amande</span><span class="qty">175 g</span></li>
+          <li><span class="name">Noix de pécan</span><span class="qty">50 g</span></li>
+          <li><span class="name">Cranberries séchées</span><span class="qty">25 g <em style="font-size:.75rem;font-weight:400">(facultatif)</em></span></li>
+          <li><span class="name">Œufs</span><span class="qty">4</span></li>
+          <li><span class="name">Farine</span><span class="qty">75 g</span></li>
+          <li><span class="name">Sucre roux</span><span class="qty">130 g</span></li>
+          <li><span class="name">Sel</span><span class="qty">½ c à c</span></li>
+          <li><span class="name">Citron (zeste + jus)</span><span class="qty">1</span></li>
+          <li><span class="name">Cannelle</span><span class="qty">1 c à c</span></li>
+          <li><span class="name">Gingembre en poudre</span><span class="qty">½ c à c <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+          <li><span class="name">Quatre épices</span><span class="qty">1 pincée <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+          <li><span class="name">Beurre (moule)</span><span class="qty">20 g</span></li>
+        </ul>
+        <div class="ing-note">💡 Pour 6–8 pers. la moitié des ingrédients suffit — c'est un gâteau plutôt nourrissant !</div>
+      </div>
+      <div class="ing-card">
+        <h3>🍦 Le glaçage cream cheese</h3>
+        <ul class="ing-list">
+          <li><span class="name">Beurre mou</span><span class="qty">25 g</span></li>
+          <li><span class="name">Fromage frais crémeux</span><span class="qty">50 g</span></li>
+          <li><span class="name">Sucre glace</span><span class="qty">100 g</span></li>
+          <li><span class="name">Arôme de citron</span><span class="qty">quelques gouttes <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+        </ul>
+        <div class="ing-note" style="background:var(--vert);border-left-color:var(--vert-dark);margin-top:1.5rem">ℹ️ Le glaçage cream cheese reste toujours plus mou qu'un glaçage au blanc d'œuf ordinaire — c'est normal !</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÉPARATION -->
+<section id="preparation">
+  <div class="container">
+    <div class="section-label" style="color:var(--vert-dark)">Étape 2</div>
+    <h2 class="section-title">La préparation</h2>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <p>Dans le bol d'un robot, travaillez <strong>les jaunes d'œufs et le sucre</strong> jusqu'à ce qu'ils blanchissent et deviennent mousseux.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <p>Ajoutez <strong>le zeste du citron</strong> finement râpé, puis la farine, le sel, les amandes en poudre et les noix de pécan hachées, les épices. Actionnez le robot par à-coups pour bien mélanger le tout.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <p>Ajoutez alors <strong>les carottes très finement râpées</strong> et enfin le jus de citron. Mixez encore quelques instants pour homogénéiser le tout. Ajoutez en dernier les cranberries séchées.</p>
+          <div class="step-tip">✨ Beaucoup mieux avec un robot : pâte plus aérée, moins compacte.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <p><strong>Montez les blancs en neige</strong> et incorporez-les délicatement à la préparation précédente.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <p>Beurrez généreusement <strong>un moule à manqué</strong> (si possible à fond amovible). Versez la préparation. Enfournez et cuisez à <strong>180°C pendant 20 à 30 minutes</strong> selon les fours — cuisson en deux portions possible.</p>
+          <div class="step-tip">🔪 Piquez au couteau pour vérifier la cuisson. Lorsque le gâteau est cuit, démoulez sur une grille et laissez refroidir complètement.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GLAÇAGE -->
+<section id="glacage">
+  <div class="container">
+    <div class="section-label" style="color:var(--rose-dark)">Étape 3</div>
+    <h2 class="section-title">Le glaçage & finition</h2>
+    <div class="glacage-inner">
+      <div class="glacage-card">
+        <h3>Comment préparer le glaçage</h3>
+        <div class="glacage-steps">
+          <div class="g-step"><div class="g-dot"></div><span>Travaillez <strong>le beurre mou avec le sucre glace</strong> et l'extrait de citron à la cuillère en bois, jusqu'à ce que le mélange soit bien homogène.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Ajoutez le <strong>fromage frais</strong> seulement à ce stade.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Fouettez <strong>un peu</strong> pour homogénéiser — pas trop longtemps pour ne pas rendre la préparation trop liquide.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Étalez le glaçage sur le carrot cake refroidi. Laissez durcir au réfrigérateur <strong>au moins 12h</strong> avant de déguster.</span></div>
+        </div>
+      </div>
+      <div class="secret-card">
+        <h3>✦ Le secret de Lise</h3>
+        <p>Travailler le beurre et le sucre glace <strong>en premier</strong>, avant d'ajouter le fromage frais. Cela permet d'obtenir un glaçage lisse et homogène, sans risque de le rendre trop liquide en surmixant.<br><br>Le glaçage cream cheese est naturellement plus souple qu'un glaçage classique — c'est exactement ce qui lui donne ce <strong>fondant caractéristique</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSEILS -->
+<section id="conseils">
+  <div class="container">
+    <div class="section-label" style="color:var(--vert-dark)">Pour aller plus loin</div>
+    <h2 class="section-title">Les conseils de Lise</h2>
+    <div class="tips-grid">
+      <div class="tip">
+        <div class="tip-icon">🥕</div>
+        <h4>Les carottes</h4>
+        <p>Râpez-les très finement pour une texture parfaite. Un robot fera un bien meilleur travail qu'une râpe manuelle.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">🥚</div>
+        <h4>Les blancs en neige</h4>
+        <p>C'est le secret du moelleux. Incorporez-les délicatement en soulevant la masse pour ne pas les casser.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">⏱️</div>
+        <h4>La cuisson</h4>
+        <p>20 à 30 minutes à 180°C — surveillez et piquez au couteau. Chaque four est différent !</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">❄️</div>
+        <h4>Le repos</h4>
+        <p>12h minimum au frais après le glaçage. La patience est récompensée — le lendemain il est encore meilleur.</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">⚖️</div>
+        <h4>Les quantités</h4>
+        <p>Pour 6 à 8 personnes, la moitié des ingrédients suffit. C'est un gâteau très nourrissant !</p>
+      </div>
+      <div class="tip">
+        <div class="tip-icon">✨</div>
+        <h4>Les facultatifs</h4>
+        <p>Cranberries, gingembre, quatre épices — facultatifs mais ils font la différence sur la profondeur aromatique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Le Carrot Cake de Lise</strong><br><br>
+  Recette originale · Journal des Femmes · Annotée et adaptée par Lise
+</footer>
+
+</body>
+</html>

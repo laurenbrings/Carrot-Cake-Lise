@@ -18,7 +18,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text)}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,253,249,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rose-mid);padding:0 2rem}
 .nav-inner{max-width:900px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text)}
-.nav-links{display:flex;gap:1.5rem}
+.nav-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 .nav-links a{font-size:.85rem;color:var(--text-light);text-decoration:none;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--vert-dark)}
 .hero{min-height:100vh;background:linear-gradient(160deg,var(--rose) 0%,var(--jaune) 50%,var(--vert) 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem}
@@ -39,7 +39,7 @@ section{padding:5rem 2rem}
 .section-header .section-title{margin-bottom:0}
 #ingredients{background:var(--jaune)}
 .ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-@media(max-width:600px){.ing-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.ing-grid{grid-template-columns:1fr}.nav-links{gap:.75rem}}
 .ing-card{background:white;border-radius:20px;padding:1.75rem;border:1px solid var(--jaune-mid)}
 .ing-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--jaune-mid)}
 .ing-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
@@ -68,19 +68,36 @@ section{padding:5rem 2rem}
 .secret-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--jaune-mid);margin-bottom:1.25rem}
 .secret-card p{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.75)}
 .secret-card strong{color:white}
-#photo-section{background:var(--vert)}
-.photo-zone{max-width:600px;margin:0 auto;text-align:center}
-.photo-drop{border:2px dashed var(--vert-mid);border-radius:24px;padding:2.5rem 2rem;cursor:pointer;transition:all .2s;background:white;position:relative}
-.photo-drop:hover{border-color:var(--vert-dark);background:var(--vert)}
-.photo-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.drop-icon{margin-bottom:1rem}
-.drop-text{font-size:1rem;color:var(--text);font-weight:500;margin-bottom:.4rem}
-.drop-sub{font-size:.82rem;color:var(--text-light)}
-.photo-preview{display:none;margin-top:1.5rem;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(91,168,154,.2)}
-.photo-preview img{width:100%;display:block;max-height:420px;object-fit:cover}
-.photo-caption{margin-top:.75rem;font-size:.82rem;color:var(--text-light);font-style:italic}
-.photo-remove{margin-top:.75rem;background:none;border:1px solid var(--rose-dark);color:var(--rose-dark);padding:6px 16px;border-radius:20px;font-size:.78rem;cursor:pointer;font-family:'Inter',sans-serif}
-.photo-remove:hover{background:var(--rose)}
+#galerie{background:var(--vert)}
+.galerie-intro{font-size:.95rem;color:var(--text-light);line-height:1.7;margin-bottom:2rem;max-width:560px}
+.upload-form{background:white;border-radius:20px;padding:1.75rem;border:1px solid var(--vert-mid);margin-bottom:2.5rem}
+.upload-form h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-size:.78rem;font-weight:500;color:var(--text-light);letter-spacing:.04em}
+.form-group input[type=text]{padding:9px 14px;border:1px solid #DDD;border-radius:10px;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--text);outline:none;transition:border-color .2s}
+.form-group input[type=text]:focus{border-color:var(--vert-dark)}
+.drop-zone{border:2px dashed var(--vert-mid);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s;position:relative;margin-bottom:1rem}
+.drop-zone:hover{border-color:var(--vert-dark);background:var(--vert)}
+.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.drop-zone p{font-size:.85rem;color:var(--text-light);margin-top:.4rem}
+.drop-preview{width:100%;max-height:180px;object-fit:cover;border-radius:10px;display:none;margin-top:.75rem}
+.btn-submit{background:var(--vert-dark);color:white;border:none;padding:11px 28px;border-radius:30px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;transition:opacity .2s;width:100%}
+.btn-submit:hover{opacity:.85}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.status-msg{font-size:.8rem;text-align:center;margin-top:.75rem;min-height:1.2rem;color:var(--vert-dark)}
+.status-msg.error{color:#C00}
+.photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+.photo-card{background:white;border-radius:20px;overflow:hidden;border:1px solid var(--vert-mid);transition:transform .2s}
+.photo-card:hover{transform:translateY(-3px)}
+.photo-card img{width:100%;height:220px;object-fit:cover;display:block}
+.photo-card-info{padding:1rem 1.25rem}
+.photo-card-name{font-weight:500;color:var(--text);font-size:.95rem;margin-bottom:.2rem}
+.photo-card-date{font-size:.75rem;color:var(--text-light)}
+.photo-card-msg{font-size:.82rem;color:var(--text-light);margin-top:.5rem;font-style:italic;line-height:1.5}
+.empty-state{text-align:center;padding:3rem;color:var(--text-light);font-size:.9rem}
+.loading-state{text-align:center;padding:2rem;color:var(--text-light);font-size:.85rem}
 #conseils{background:var(--white)}
 .tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem}
 .tip{background:var(--white);border-radius:16px;padding:1.5rem;border:1px solid #EEE}
@@ -99,7 +116,7 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
       <a href="#ingredients">Ingrédients</a>
       <a href="#preparation">Préparation</a>
       <a href="#glacage">Glaçage</a>
-      <a href="#photo-section">Ma photo</a>
+      <a href="#galerie">Galerie</a>
       <a href="#conseils">Conseils</a>
     </div>
   </div>
@@ -109,13 +126,12 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
   <div class="hero-inner">
     <span class="hero-tag">La recette de Lise</span>
     <div class="hero-svg">
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
         <ellipse cx="60" cy="78" rx="38" ry="28" fill="#F9C8C8"/>
         <ellipse cx="60" cy="72" rx="38" ry="28" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/>
         <rect x="22" y="58" width="76" height="16" rx="4" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/>
         <ellipse cx="60" cy="58" rx="38" ry="14" fill="#FFFDF9" stroke="#F5E6B0" stroke-width="1.5"/>
         <path d="M48 20 Q52 8 56 18 Q58 6 62 18 Q66 8 70 20" stroke="#5BA89A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M50 28 Q54 16 58 26 Q60 14 64 26 Q68 16 72 28" stroke="#A8D5CC" stroke-width="2" fill="none" stroke-linecap="round"/>
         <ellipse cx="60" cy="30" rx="14" ry="8" fill="#F26522" opacity=".85"/>
         <ellipse cx="60" cy="29" rx="12" ry="6" fill="#F48C42"/>
         <circle cx="44" cy="65" r="4" fill="#F9C8C8" stroke="#E8A0A0" stroke-width="1"/>
@@ -137,16 +153,8 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
 <section id="ingredients">
   <div class="container">
     <div class="section-header">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <ellipse cx="26" cy="38" rx="10" ry="6" fill="#F48C42" opacity=".3"/>
-        <path d="M26 42 Q20 34 20 26 Q20 18 26 14 Q32 18 32 26 Q32 34 26 42Z" fill="#F48C42"/>
-        <path d="M26 42 Q22 34 22 26 Q22 18 26 14" fill="#F26522" opacity=".4"/>
-        <path d="M26 14 Q24 8 22 10 M26 14 Q26 7 28 9 M26 14 Q28 8 30 10" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" fill="none"/>
-      </svg>
-      <div>
-        <div class="section-label" style="color:var(--vert-dark)">Étape 1</div>
-        <h2 class="section-title">Les ingrédients</h2>
-      </div>
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><path d="M26 42 Q20 34 20 26 Q20 18 26 14 Q32 18 32 26 Q32 34 26 42Z" fill="#F48C42"/><path d="M26 14 Q24 8 22 10 M26 14 Q26 7 28 9 M26 14 Q28 8 30 10" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <div><div class="section-label" style="color:var(--vert-dark)">Étape 1</div><h2 class="section-title">Les ingrédients</h2></div>
     </div>
     <div class="ing-grid">
       <div class="ing-card">
@@ -155,15 +163,15 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
           <li><span class="name">Carotte râpée</span><span class="qty">250 g</span></li>
           <li><span class="name">Poudre d'amande</span><span class="qty">175 g</span></li>
           <li><span class="name">Noix de pécan</span><span class="qty">50 g</span></li>
-          <li><span class="name">Cranberries séchées</span><span class="qty">25 g <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+          <li><span class="name">Cranberries séchées</span><span class="qty">25 g <em style="font-size:.75rem">(fac.)</em></span></li>
           <li><span class="name">Œufs</span><span class="qty">4</span></li>
           <li><span class="name">Farine</span><span class="qty">75 g</span></li>
           <li><span class="name">Sucre roux</span><span class="qty">130 g</span></li>
           <li><span class="name">Sel</span><span class="qty">½ c à c</span></li>
           <li><span class="name">Citron (zeste + jus)</span><span class="qty">1</span></li>
           <li><span class="name">Cannelle</span><span class="qty">1 c à c</span></li>
-          <li><span class="name">Gingembre en poudre</span><span class="qty">½ c à c <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
-          <li><span class="name">Quatre épices</span><span class="qty">1 pincée <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+          <li><span class="name">Gingembre en poudre</span><span class="qty">½ c à c <em style="font-size:.75rem">(fac.)</em></span></li>
+          <li><span class="name">Quatre épices</span><span class="qty">1 pincée <em style="font-size:.75rem">(fac.)</em></span></li>
           <li><span class="name">Beurre (moule)</span><span class="qty">20 g</span></li>
         </ul>
         <div class="ing-note">💡 Pour 6–8 pers. la moitié des ingrédients suffit — c'est un gâteau plutôt nourrissant !</div>
@@ -174,9 +182,9 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
           <li><span class="name">Beurre mou</span><span class="qty">25 g</span></li>
           <li><span class="name">Fromage frais crémeux</span><span class="qty">50 g</span></li>
           <li><span class="name">Sucre glace</span><span class="qty">100 g</span></li>
-          <li><span class="name">Arôme de citron</span><span class="qty">quelques gouttes <em style="font-size:.75rem;font-weight:400">(fac.)</em></span></li>
+          <li><span class="name">Arôme de citron</span><span class="qty">quelques gouttes <em style="font-size:.75rem">(fac.)</em></span></li>
         </ul>
-        <div class="ing-note" style="background:var(--vert);border-left-color:var(--vert-dark);margin-top:1.5rem">ℹ️ Le glaçage cream cheese reste toujours plus mou qu'un glaçage classique — c'est tout à fait normal !</div>
+        <div class="ing-note" style="background:var(--vert);border-left-color:var(--vert-dark);margin-top:1.5rem">ℹ️ Le glaçage cream cheese reste plus mou qu'un glaçage classique — c'est tout à fait normal !</div>
       </div>
     </div>
   </div>
@@ -185,53 +193,15 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
 <section id="preparation">
   <div class="container">
     <div class="section-header">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <rect x="10" y="28" width="32" height="18" rx="6" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/>
-        <rect x="14" y="22" width="24" height="10" rx="4" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/>
-        <ellipse cx="26" cy="22" rx="12" ry="5" fill="#FFFDF9" stroke="#F5E6B0" stroke-width="1.5"/>
-        <path d="M20 10 Q22 6 26 8 Q30 6 32 10 Q34 14 26 16 Q18 14 20 10Z" fill="#A8D5CC"/>
-        <circle cx="19" cy="34" r="2.5" fill="#F9C8C8" stroke="#E8A0A0" stroke-width="1"/>
-        <circle cx="33" cy="34" r="2.5" fill="#A8D5CC" stroke="#5BA89A" stroke-width="1"/>
-        <circle cx="26" cy="36" r="2.5" fill="#F5E6B0" stroke="#BFA830" stroke-width="1"/>
-      </svg>
-      <div>
-        <div class="section-label" style="color:var(--vert-dark)">Étape 2</div>
-        <h2 class="section-title">La préparation</h2>
-      </div>
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="10" y="28" width="32" height="18" rx="6" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><rect x="14" y="22" width="24" height="10" rx="4" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/><ellipse cx="26" cy="22" rx="12" ry="5" fill="#FFFDF9" stroke="#F5E6B0" stroke-width="1.5"/><path d="M20 10 Q22 6 26 8 Q30 6 32 10 Q34 14 26 16 Q18 14 20 10Z" fill="#A8D5CC"/></svg>
+      <div><div class="section-label" style="color:var(--vert-dark)">Étape 2</div><h2 class="section-title">La préparation</h2></div>
     </div>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <p>Dans le bol d'un robot, travaillez <strong>les jaunes d'œufs et le sucre</strong> jusqu'à ce qu'ils blanchissent et deviennent mousseux.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <p>Ajoutez <strong>le zeste du citron</strong> finement râpé, puis la farine, le sel, les amandes en poudre et les noix de pécan hachées, les épices. Actionnez le robot par à-coups pour bien mélanger le tout.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <p>Ajoutez alors <strong>les carottes très finement râpées</strong> et enfin le jus de citron. Mixez encore quelques instants pour homogénéiser. Ajoutez en dernier les cranberries séchées.</p>
-          <div class="step-tip">✨ Beaucoup mieux avec un robot : pâte plus aérée, moins compacte.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <p><strong>Montez les blancs en neige</strong> et incorporez-les délicatement à la préparation précédente.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <p>Beurrez généreusement <strong>un moule à manqué</strong> (si possible à fond amovible). Versez la préparation. Enfournez et cuisez à <strong>180°C pendant 40 à 50 minutes</strong> selon les fours.</p>
-          <div class="step-tip">🔪 Piquez au couteau pour vérifier la cuisson. Démoulez sur une grille et laissez refroidir complètement avant de glacer.</div>
-        </div>
-      </div>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><p>Dans le bol d'un robot, travaillez <strong>les jaunes d'œufs et le sucre</strong> jusqu'à ce qu'ils blanchissent et deviennent mousseux.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><p>Ajoutez <strong>le zeste du citron</strong> finement râpé, puis la farine, le sel, les amandes en poudre et les noix de pécan hachées, les épices. Actionnez le robot par à-coups.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><p>Ajoutez <strong>les carottes très finement râpées</strong> et le jus de citron. Mixez encore quelques instants. Ajoutez en dernier les cranberries séchées.<div class="step-tip">✨ Beaucoup mieux avec un robot : pâte plus aérée, moins compacte.</div></p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><p><strong>Montez les blancs en neige</strong> et incorporez-les délicatement à la préparation précédente.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><p>Beurrez généreusement <strong>un moule à manqué</strong>. Versez la préparation. Cuisez à <strong>180°C pendant 40 à 50 minutes</strong>.<div class="step-tip">🔪 Piquez au couteau pour vérifier. Démoulez sur une grille et laissez refroidir complètement.</div></p></div></div>
     </div>
   </div>
 </section>
@@ -239,117 +209,72 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
 <section id="glacage">
   <div class="container">
     <div class="section-header">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <ellipse cx="26" cy="36" rx="16" ry="8" fill="#F9C8C8" stroke="#E8A0A0" stroke-width="1.5"/>
-        <ellipse cx="26" cy="30" rx="16" ry="8" fill="#FFFDF9" stroke="#F9C8C8" stroke-width="1.5"/>
-        <path d="M14 24 Q18 16 26 18 Q34 16 38 24" stroke="#F9C8C8" stroke-width="2" fill="none"/>
-        <path d="M20 20 Q22 14 26 16 Q30 14 32 20" fill="white" stroke="#F5E6B0" stroke-width="1.5"/>
-        <circle cx="26" cy="14" r="3" fill="#F5E6B0" stroke="#BFA830" stroke-width="1"/>
-      </svg>
-      <div>
-        <div class="section-label" style="color:var(--rose-dark)">Étape 3</div>
-        <h2 class="section-title">Le glaçage</h2>
-      </div>
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="36" rx="16" ry="8" fill="#F9C8C8" stroke="#E8A0A0" stroke-width="1.5"/><ellipse cx="26" cy="30" rx="16" ry="8" fill="#FFFDF9" stroke="#F9C8C8" stroke-width="1.5"/><path d="M14 24 Q18 16 26 18 Q34 16 38 24" stroke="#F9C8C8" stroke-width="2" fill="none"/><circle cx="26" cy="14" r="3" fill="#F5E6B0" stroke="#BFA830" stroke-width="1"/></svg>
+      <div><div class="section-label" style="color:var(--rose-dark)">Étape 3</div><h2 class="section-title">Le glaçage</h2></div>
     </div>
     <div class="glacage-inner">
       <div class="glacage-card">
         <h3>Comment préparer le glaçage</h3>
         <div class="glacage-steps">
-          <div class="g-step"><div class="g-dot"></div><span>Travaillez <strong>le beurre mou avec le sucre glace</strong> et l'extrait de citron à la cuillère en bois, jusqu'à ce que le mélange soit bien homogène.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Travaillez <strong>le beurre mou avec le sucre glace</strong> et l'extrait de citron à la cuillère en bois jusqu'à homogénéité.</span></div>
           <div class="g-step"><div class="g-dot"></div><span>Ajoutez le <strong>fromage frais</strong> seulement à ce stade.</span></div>
-          <div class="g-step"><div class="g-dot"></div><span>Fouettez <strong>un peu</strong> pour homogénéiser — pas trop longtemps pour ne pas rendre la préparation trop liquide.</span></div>
-          <div class="g-step"><div class="g-dot"></div><span>Étalez sur le carrot cake refroidi. Laissez durcir au réfrigérateur <strong>au moins 12h</strong> avant de déguster.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Fouettez <strong>un peu</strong> — pas trop longtemps pour ne pas rendre la préparation trop liquide.</span></div>
+          <div class="g-step"><div class="g-dot"></div><span>Étalez sur le carrot cake refroidi. Réfrigérateur <strong>au moins 12h</strong>.</span></div>
         </div>
       </div>
       <div class="secret-card">
         <h3>✦ Le secret de Lise</h3>
-        <p>Travailler le beurre et le sucre glace <strong>en premier</strong>, avant d'ajouter le fromage frais. Cela permet d'obtenir un glaçage lisse et homogène, sans risque de le rendre trop liquide en surmixant.<br><br>Le glaçage cream cheese est naturellement plus souple qu'un glaçage classique — c'est exactement ce qui lui donne ce <strong>fondant caractéristique</strong>.</p>
+        <p>Travailler le beurre et le sucre glace <strong>en premier</strong>, avant d'ajouter le fromage frais. Le glaçage cream cheese est naturellement plus souple qu'un glaçage classique — c'est ce qui lui donne ce <strong>fondant caractéristique</strong>.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="photo-section">
+<section id="galerie">
   <div class="container">
     <div class="section-header">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <rect x="8" y="14" width="36" height="28" rx="6" fill="#D4EDE8" stroke="#A8D5CC" stroke-width="1.5"/>
-        <circle cx="26" cy="28" r="8" fill="white" stroke="#A8D5CC" stroke-width="1.5"/>
-        <circle cx="26" cy="28" r="5" fill="#D4EDE8"/>
-        <rect x="20" y="10" width="12" height="6" rx="3" fill="#A8D5CC"/>
-        <circle cx="36" cy="20" r="2" fill="white" opacity=".8"/>
-      </svg>
-      <div>
-        <div class="section-label" style="color:var(--vert-dark)">Galerie</div>
-        <h2 class="section-title">Ma photo du gâteau</h2>
-      </div>
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="8" y="14" width="36" height="28" rx="6" fill="#D4EDE8" stroke="#A8D5CC" stroke-width="1.5"/><circle cx="26" cy="28" r="8" fill="white" stroke="#A8D5CC" stroke-width="1.5"/><circle cx="26" cy="28" r="5" fill="#D4EDE8"/><rect x="20" y="10" width="12" height="6" rx="3" fill="#A8D5CC"/></svg>
+      <div><div class="section-label" style="color:var(--vert-dark)">Communauté</div><h2 class="section-title">Vos carrot cakes</h2></div>
     </div>
-    <div class="photo-zone">
-      <div class="photo-drop" id="dropZone">
-        <input type="file" accept="image/*" id="photoInput">
-        <div class="drop-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" fill="var(--vert)" stroke="var(--vert-mid)" stroke-width="1.5"/>
-            <path d="M24 16 L24 32 M16 24 L32 24" stroke="var(--vert-dark)" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
+    <p class="galerie-intro">Vous avez testé la recette ? Partagez votre photo — elle apparaîtra pour tout le monde ! 🥕</p>
+    <div class="upload-form">
+      <h3>Ajouter ma photo</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Votre prénom *</label>
+          <input type="text" id="inputNom" placeholder="ex : Marie" maxlength="30">
         </div>
-        <p class="drop-text">Ajoute ta photo ici</p>
-        <p class="drop-sub">Elle sera sauvegardée et réapparaîtra à chaque visite ✨</p>
+        <div class="form-group">
+          <label>Un petit mot (facultatif)</label>
+          <input type="text" id="inputMsg" placeholder="ex : Délicieux !" maxlength="80">
+        </div>
       </div>
-      <div class="photo-preview" id="photoPreview">
-        <img id="photoImg" src="" alt="Mon carrot cake">
-        <p class="photo-caption">Mon carrot cake 🥕</p>
-        <button class="photo-remove" id="removeBtn">Supprimer la photo</button>
+      <div class="drop-zone" id="dropZone">
+        <input type="file" accept="image/*" id="photoInput">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" fill="var(--vert)" stroke="var(--vert-mid)" stroke-width="1"/><path d="M16 10 L16 22 M10 16 L22 16" stroke="var(--vert-dark)" stroke-width="2" stroke-linecap="round"/></svg>
+        <p>Cliquer pour choisir une photo</p>
+        <img id="dropPreview" class="drop-preview">
       </div>
+      <button class="btn-submit" id="btnSubmit" disabled>Partager ma photo</button>
+      <p class="status-msg" id="statusMsg"></p>
     </div>
+    <div id="photosContainer"><div class="loading-state">Chargement des photos...</div></div>
   </div>
 </section>
 
 <section id="conseils">
   <div class="container">
     <div class="section-header">
-      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-        <circle cx="26" cy="22" r="12" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/>
-        <path d="M22 22 Q22 18 26 16 Q30 18 30 22 Q30 26 26 28" stroke="#BFA830" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="26" cy="31" r="1.5" fill="#BFA830"/>
-        <path d="M18 38 Q26 34 34 38" stroke="#A8D5CC" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
-      <div>
-        <div class="section-label" style="color:var(--vert-dark)">Pour aller plus loin</div>
-        <h2 class="section-title">Les conseils de Lise</h2>
-      </div>
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="22" r="12" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/><path d="M22 22 Q22 18 26 16 Q30 18 30 22 Q30 26 26 28" stroke="#BFA830" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="26" cy="31" r="1.5" fill="#BFA830"/></svg>
+      <div><div class="section-label" style="color:var(--vert-dark)">Pour aller plus loin</div><h2 class="section-title">Les conseils de Lise</h2></div>
     </div>
     <div class="tips-grid">
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 28 Q10 22 10 16 Q10 10 16 8 Q22 10 22 16 Q22 22 16 28Z" fill="#F48C42"/><path d="M16 8 Q14 4 12 6 M16 8 Q16 3 18 5 M16 8 Q18 4 20 6" stroke="#5BA89A" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-        <h4>Les carottes</h4>
-        <p>Râpez-les très finement. Un robot fera un bien meilleur travail qu'une râpe manuelle.</p>
-      </div>
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="20" rx="10" ry="7" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M8 16 Q10 10 16 10 Q22 10 24 16" stroke="#E8A0A0" stroke-width="1.5" fill="none"/><path d="M12 10 Q14 6 16 8 Q18 6 20 10" stroke="#F9C8C8" stroke-width="1.5" fill="none"/></svg>
-        <h4>Les blancs en neige</h4>
-        <p>Le secret du moelleux. Incorporez délicatement en soulevant la masse.</p>
-      </div>
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="14" width="16" height="14" rx="4" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M12 14 Q12 8 16 8 Q20 8 20 14" stroke="#E8A0A0" stroke-width="1.5" fill="none"/><path d="M16 19 L16 23" stroke="#E8A0A0" stroke-width="2" stroke-linecap="round"/></svg>
-        <h4>La cuisson</h4>
-        <p>40 à 50 min à 180°C — piquez au couteau. Chaque four est différent !</p>
-      </div>
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" fill="#D4EDE8" stroke="#A8D5CC" stroke-width="1.5"/><path d="M16 10 L16 16 L20 20" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h4>Le repos</h4>
-        <p>12h minimum après le glaçage. Le lendemain il est encore meilleur.</p>
-      </div>
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="8" width="16" height="20" rx="4" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/><path d="M12 14 L20 14 M12 18 L18 18 M12 22 L16 22" stroke="#BFA830" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <h4>Les quantités</h4>
-        <p>Pour 6–8 personnes, la moitié suffit. C'est un gâteau très nourrissant !</p>
-      </div>
-      <div class="tip">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M12 16 L15 19 L20 13" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h4>Les facultatifs</h4>
-        <p>Cranberries, gingembre, quatre épices — facultatifs mais ils font la différence.</p>
-      </div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 28 Q10 22 10 16 Q10 10 16 8 Q22 10 22 16 Q22 22 16 28Z" fill="#F48C42"/><path d="M16 8 Q14 4 12 6 M16 8 Q16 3 18 5 M16 8 Q18 4 20 6" stroke="#5BA89A" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg><h4>Les carottes</h4><p>Râpez-les très finement. Un robot fera un bien meilleur travail qu'une râpe manuelle.</p></div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="20" rx="10" ry="7" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M8 16 Q10 10 16 10 Q22 10 24 16" stroke="#E8A0A0" stroke-width="1.5" fill="none"/></svg><h4>Les blancs en neige</h4><p>Le secret du moelleux. Incorporez délicatement en soulevant la masse.</p></div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="14" width="16" height="14" rx="4" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M12 14 Q12 8 16 8 Q20 8 20 14" stroke="#E8A0A0" stroke-width="1.5" fill="none"/></svg><h4>La cuisson</h4><p>40 à 50 min à 180°C — piquez au couteau. Chaque four est différent !</p></div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" fill="#D4EDE8" stroke="#A8D5CC" stroke-width="1.5"/><path d="M16 10 L16 16 L20 20" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Le repos</h4><p>12h minimum après le glaçage. Le lendemain il est encore meilleur.</p></div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="8" width="16" height="20" rx="4" fill="#FDF6E3" stroke="#F5E6B0" stroke-width="1.5"/><path d="M12 14 L20 14 M12 18 L18 18 M12 22 L16 22" stroke="#BFA830" stroke-width="1.5" stroke-linecap="round"/></svg><h4>Les quantités</h4><p>Pour 6–8 personnes, la moitié suffit. C'est un gâteau très nourrissant !</p></div>
+      <div class="tip"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" fill="#FDE8E8" stroke="#E8A0A0" stroke-width="1.5"/><path d="M12 16 L15 19 L20 13" stroke="#5BA89A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Les facultatifs</h4><p>Cranberries, gingembre, quatre épices — facultatifs mais ils font la différence.</p></div>
     </div>
   </div>
 </section>
@@ -360,45 +285,121 @@ footer strong{color:white;font-family:'Playfair Display',serif;font-size:1rem}
 </footer>
 
 <script>
+const SUPABASE_URL = 'https://qmihcyseyfducwyoifbz.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_2sPLZgMH6E20gMjwMNaYuQ_eBHchuip';
+const BUCKET = 'carrot-cake';
+
+const headers = {
+  'apikey': SUPABASE_KEY,
+  'Authorization': `Bearer ${SUPABASE_KEY}`,
+  'Content-Type': 'application/json'
+};
+
 const input = document.getElementById('photoInput');
-const preview = document.getElementById('photoPreview');
-const img = document.getElementById('photoImg');
-const dropZone = document.getElementById('dropZone');
-const removeBtn = document.getElementById('removeBtn');
+const dropPreview = document.getElementById('dropPreview');
+const btnSubmit = document.getElementById('btnSubmit');
+const statusMsg = document.getElementById('statusMsg');
+const inputNom = document.getElementById('inputNom');
+const inputMsg = document.getElementById('inputMsg');
+const photosContainer = document.getElementById('photosContainer');
 
-function showPhoto(src) {
-  img.src = src;
-  preview.style.display = 'block';
-  dropZone.style.display = 'none';
+let currentFile = null;
+
+function checkReady() {
+  btnSubmit.disabled = !(currentFile && inputNom.value.trim().length > 0);
 }
 
-function clearPhoto() {
-  localStorage.removeItem('lise_cake_photo');
-  preview.style.display = 'none';
-  dropZone.style.display = 'block';
-  img.src = '';
-  input.value = '';
-}
-
-const saved = localStorage.getItem('lise_cake_photo');
-if (saved) showPhoto(saved);
+inputNom.addEventListener('input', checkReady);
 
 input.addEventListener('change', function() {
   const file = this.files[0];
   if (!file) return;
+  currentFile = file;
   const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      localStorage.setItem('lise_cake_photo', e.target.result);
-    } catch(err) {
-      console.log('Photo trop lourde pour le stockage local');
-    }
-    showPhoto(e.target.result);
+  reader.onload = e => {
+    dropPreview.src = e.target.result;
+    dropPreview.style.display = 'block';
   };
   reader.readAsDataURL(file);
+  checkReady();
 });
 
-removeBtn.addEventListener('click', clearPhoto);
+async function loadPhotos() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/photos?select=*&order=created_at.desc`, { headers });
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) {
+      photosContainer.innerHTML = `<div class="empty-state"><p>Soyez le premier à partager votre carrot cake ! 🥕</p></div>`;
+      return;
+    }
+    photosContainer.innerHTML = `<div class="photos-grid">${data.map(e => `
+      <div class="photo-card">
+        <img src="${e.url}" alt="Carrot cake de ${e.nom}" loading="lazy">
+        <div class="photo-card-info">
+          <div class="photo-card-name">🥕 ${e.nom}</div>
+          <div class="photo-card-date">${new Date(e.created_at).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}</div>
+          ${e.msg ? `<div class="photo-card-msg">"${e.msg}"</div>` : ''}
+        </div>
+      </div>`).join('')}</div>`;
+  } catch(e) {
+    photosContainer.innerHTML = `<div class="empty-state"><p>Impossible de charger les photos pour l'instant.</p></div>`;
+  }
+}
+
+btnSubmit.addEventListener('click', async function() {
+  const nom = inputNom.value.trim();
+  if (!nom || !currentFile) return;
+  btnSubmit.disabled = true;
+  statusMsg.textContent = 'Upload en cours...';
+  statusMsg.className = 'status-msg';
+
+  try {
+    // 1. Upload image dans Storage
+    const ext = currentFile.name.split('.').pop();
+    const filename = `${Date.now()}_${Math.random().toString(36).slice(2,7)}.${ext}`;
+    const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${filename}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': currentFile.type,
+        'x-upsert': 'false'
+      },
+      body: currentFile
+    });
+
+    if (!uploadRes.ok) throw new Error('Upload échoué');
+
+    // 2. URL publique
+    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${filename}`;
+
+    // 3. Insérer dans la table photos
+    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/photos`, {
+      method: 'POST',
+      headers: { ...headers, 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ nom, msg: inputMsg.value.trim(), url: publicUrl })
+    });
+
+    if (!insertRes.ok) throw new Error('Insertion échouée');
+
+    statusMsg.textContent = '✓ Photo partagée avec succès !';
+    inputNom.value = '';
+    inputMsg.value = '';
+    currentFile = null;
+    dropPreview.style.display = 'none';
+    dropPreview.src = '';
+    input.value = '';
+    checkReady();
+    await loadPhotos();
+
+  } catch(e) {
+    statusMsg.textContent = 'Erreur — réessaie ou vérifie ta connexion.';
+    statusMsg.className = 'status-msg error';
+    btnSubmit.disabled = false;
+  }
+});
+
+loadPhotos();
 </script>
 </body>
 </html>
